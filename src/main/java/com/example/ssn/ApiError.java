@@ -9,16 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 
 @RequiredArgsConstructor(access=AccessLevel.PROTECTED)
-@Builder(toBuilder = true)
 public class ApiError {
-    private  final String message;
-    private final int code;
-    private final HttpStatus httpStatus;
-    private final String field;
+    private  String message;
+    private int code;
+    private HttpStatus httpStatus;
+    private String field;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private final String trace;
+    private String trace;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private final Long id;
+    private Long id;
 
     public ApiError(String message, int code, HttpStatus httpStatus, String field, String trace, Long id) {
         this.message = message;
@@ -56,4 +55,5 @@ public class ApiError {
     public Long getId() {
         return id;
     }
+
 }
