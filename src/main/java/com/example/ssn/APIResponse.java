@@ -3,6 +3,7 @@ package com.example.ssn;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jdk.nashorn.internal.objects.annotations.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -22,7 +23,10 @@ public class APIResponse {
         if (data==null){
             this.type = Type.NONE;
         }
-        //else (isArray(data))
+        else if (isArray(data)||isCollecion(data)){
+            this.type = Type.ARRAY;
+        }
+        else this.type = Type.OBJECT;
     }
 
     public Status getStatus() {
@@ -45,8 +49,15 @@ public class APIResponse {
         return errors;
     }
 
+    private ApiError getError(){
+        if(errors==null || errors.isEmpty()) return null;
+        else return  errors.get(0);
+    }
+
     public void setErrors(List<ApiError> errors) {
-        this.errors = errors;
+        this.errors = new ArrayList<>();
+        this.errors.addAll(errors);
+        this.status = errors.isEmpty() ? Status.OK : Status.ERROR;
     }
 
     public String getAuthToken() {
