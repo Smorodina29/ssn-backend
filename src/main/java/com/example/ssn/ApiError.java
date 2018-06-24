@@ -2,13 +2,10 @@ package com.example.ssn;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jdk.nashorn.internal.objects.annotations.Getter;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 
-@RequiredArgsConstructor(access=AccessLevel.PROTECTED)
+//@RequiredArgsConstructor(access=AccessLevel.PROTECTED)
 public class ApiError {
     private  String message;
     private int code;
