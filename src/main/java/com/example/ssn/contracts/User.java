@@ -1,11 +1,10 @@
-package com.example.ssn;
-
-import com.sun.javafx.beans.IDProperty;
+package com.example.ssn.contracts;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +14,9 @@ public class User {
     private Long id;
     private String firstname;
     private String lastname;
+    private Roles role;
+    private boolean deleted;
+    private Group[] groups;
     private String username;
     private String password;
     private String position;
@@ -22,10 +24,20 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String firstname, String lastname, String username, String password, String position) {
-        this.id = id;
+    public User(String firstname, String lastname, Roles role, Group[] groups, String username, String password, String position) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.role = role;
+        this.groups = groups;
+        this.username = username;
+        this.password = password;
+        this.position = position;
+    }
+
+    public User(String firstname, String lastname, Roles role, String username, String password, String position) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
         this.username = username;
         this.password = password;
         this.position = position;
@@ -53,6 +65,30 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public Group[] getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Group[] groups) {
+        this.groups = groups;
     }
 
     public String getUsername() {
@@ -84,9 +120,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) &&
+        return deleted == user.deleted &&
+                Objects.equals(id, user.id) &&
                 Objects.equals(firstname, user.firstname) &&
                 Objects.equals(lastname, user.lastname) &&
+                Objects.equals(role, user.role) &&
+                Arrays.equals(groups, user.groups) &&
                 Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(position, user.position);
@@ -95,6 +134,8 @@ public class User {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstname, lastname, username, password, position);
+        int result = Objects.hash(id, firstname, lastname, role, deleted, username, password, position);
+        result = 31 * result + Arrays.hashCode(groups);
+        return result;
     }
 }

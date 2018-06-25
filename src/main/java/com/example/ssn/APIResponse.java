@@ -14,11 +14,15 @@ public class APIResponse {
     private List<ApiError> errors;
     private String authToken;
 
+    protected APIResponse(Object obj){
+        setData(obj);
+    }
+
     public Object getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    private  void setData(Object data) {
         this.data = data;
         if (data==null){
             this.type = Type.NONE;
@@ -54,10 +58,11 @@ public class APIResponse {
         else return  errors.get(0);
     }
 
-    public void setErrors(List<ApiError> errors) {
+    private APIResponse setErrors(List<ApiError> errors) {
         this.errors = new ArrayList<>();
         this.errors.addAll(errors);
         this.status = errors.isEmpty() ? Status.OK : Status.ERROR;
+        return this;
     }
 
     public String getAuthToken() {

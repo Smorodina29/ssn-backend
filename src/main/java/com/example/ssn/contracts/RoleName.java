@@ -1,4 +1,4 @@
-package com.example.ssn;
+package com.example.ssn.contracts;
 
 public enum RoleName {
     ADMIN,

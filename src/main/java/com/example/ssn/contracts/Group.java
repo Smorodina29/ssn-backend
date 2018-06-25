@@ -1,20 +1,32 @@
-package com.example.ssn;
+package com.example.ssn.contracts;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Roles {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private List<User> users;
     private String name;
+    private Long id;
 
-    public Roles(Long id, String name) {
+    public Group(List<User> users, String name, Long id) {
+        this.users = users;
+        this.name = name;
         this.id = id;
+    }
+
+    public Group(List<User> users, String name) {
+        this.users = users;
+        this.name = name;
+    }
+
+    public Group(String name) {
         this.name = name;
     }
 
@@ -24,6 +36,14 @@ public class Roles {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public String getName() {
@@ -38,14 +58,15 @@ public class Roles {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Roles roles = (Roles) o;
-        return Objects.equals(id, roles.id) &&
-                Objects.equals(name, roles.name);
+        Group group = (Group) o;
+        return Objects.equals(users, group.users) &&
+                Objects.equals(name, group.name) &&
+                Objects.equals(id, group.id);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name);
+        return Objects.hash(users, name, id);
     }
 }
