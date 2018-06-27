@@ -24,17 +24,18 @@ public class User {
     public User() {
     }
 
-    public User(String firstname, String lastname, Roles role, Group[] groups, String username, String password, String position) {
+
+    public User(String firstname, String lastname, Roles role, String username, String password, String position) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.role = role;
-        this.groups = groups;
         this.username = username;
         this.password = password;
         this.position = position;
     }
 
-    public User(String firstname, String lastname, Roles role, String username, String password, String position) {
+    public User(long id, String firstname, String lastname, Roles role, String username, String password, String position) {
+        this.id=id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.role = role;

@@ -1,5 +1,6 @@
 package com.example.ssn.services;
 
+import com.example.ssn.contracts.Roles;
 import com.example.ssn.contracts.User;
 
 import javax.management.relation.Role;
@@ -8,13 +9,13 @@ import java.util.List;
 public interface UserService {
     List<User> findAllUsers();
 
-    User getUserById(Long id);
+    User getUserById(long id);
 
-    User registration(String firstname, String lastname, Role role, String username, String password, String position);
+    User registration(String firstname, String lastname, Roles role, String username, String password, String position);
 
-    User resetPassword(Long id, String password);
+    User resetPassword(long id, String password);
 
-    User changePassword(Long id, String password);
+    User changePassword(long id, String password);
 
     User changeInfo();
 }

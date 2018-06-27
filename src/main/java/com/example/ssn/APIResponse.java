@@ -58,7 +58,7 @@ public class APIResponse {
         else return  errors.get(0);
     }
 
-    private APIResponse setErrors(List<ApiError> errors) {
+    public APIResponse setErrors(List<ApiError> errors) {
         this.errors = new ArrayList<>();
         this.errors.addAll(errors);
         this.status = errors.isEmpty() ? Status.OK : Status.ERROR;
