@@ -3,19 +3,12 @@ package com.example.ssn.controllers;
 import com.example.ssn.APIResponse;
 import com.example.ssn.ApiResponceFactory;
 import com.example.ssn.contracts.Roles;
-import com.example.ssn.contracts.User;
-import com.example.ssn.repositories.UserRepositories;
 import com.example.ssn.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class UserControllers {
@@ -34,8 +27,13 @@ public class UserControllers {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public APIResponse registr(String firstname, String lastname, Roles role, String username, String password, String position){
-        return  ApiResponceFactory.success(userService.registration(firstname, lastname, role, username, password, position));
+    public APIResponse registrUser(String firstname, String lastname, Roles role, String username, String password, String position){
+        return  ApiResponceFactory.success(userService.registration(firstname, lastname, Roles.USER, username, password, position));
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.DELETE)
+    public APIResponse delete(long id){
+        return ApiResponceFactory.success(userService.delete(id));
     }
     /*@RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers(Model model){

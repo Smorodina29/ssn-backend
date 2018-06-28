@@ -3,7 +3,6 @@ package com.example.ssn.services;
 import com.example.ssn.contracts.Roles;
 import com.example.ssn.contracts.User;
 
-import javax.management.relation.Role;
 import java.util.List;
 
 public interface UserService {
@@ -13,9 +12,11 @@ public interface UserService {
 
     User registration(String firstname, String lastname, Roles role, String username, String password, String position);
 
-    User resetPassword(long id, String password);
+    void resetPassword(long id, String password);
 
-    User changePassword(long id, String password);
+    void changePassword(long id, String password);
 
     User changeInfo();
+
+    User delete(long id);
 }

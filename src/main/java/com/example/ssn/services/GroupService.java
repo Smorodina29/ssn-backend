@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface GroupService {
-    Group[] getGroups();
+    List<Group> getGroups();
     Group createGroup(String name);
     void deleteGroup(long id);
     void addUsers(List<User> users);

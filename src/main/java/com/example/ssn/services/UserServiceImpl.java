@@ -1,12 +1,9 @@
 package com.example.ssn.services;
 
-import com.example.ssn.contracts.Group;
 import com.example.ssn.contracts.Roles;
 import com.example.ssn.contracts.User;
-import com.example.ssn.exeptions.NotFoundUser;
 import org.springframework.stereotype.Service;
 
-import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,7 +13,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllUsers() {
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Bob", "Marli", new Roles("user"),  "bobm", "pass123", "operator"));
+        users.add(new User("Bob", "Marli", Roles.USER,  "bobm", "pass123", "operator"));
         //users.add(new User(12, "Steve", "Marli", new Roles("user"),  new Group[1], "bobm", "pass123", "operator"));
         return users;
     }
@@ -24,8 +21,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(long id) {
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Bob", "Marli", new Roles("user"),"bobm", "pass123", "operator"));
-        users.add(new User((long)12, "Steve", "Marli", new Roles("user"),"bobm", "pass123", "operator"));
+        users.add(new User("Bob", "Marli", Roles.USER,"bobm", "pass123", "operator"));
+        users.add(new User((long)12, "Steve", "Marli", Roles.USER,"bobm", "pass123", "operator"));
 
         for (User user : users) {
             if (Objects.equals(user.getId(), id)){
@@ -46,18 +43,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User resetPassword(long id, String password) {
-        return null;
+    public void resetPassword(long id, String password) {
+
     }
 
     @Override
-    public User changePassword(long id, String password) {
-        return null;
+    public void changePassword(long id, String password) {
+
     }
 
 
     @Override
     public User changeInfo() {
+        return null;
+    }
+
+    @Override
+    public User delete(long id) {
+        ArrayList<User> users = new ArrayList<>();
+        users.add(new User("Bob", "Marli", Roles.USER,"bobm", "pass123", "operator"));
+        users.add(new User((long)12, "Steve", "Marli", Roles.USER,"bobm", "pass123", "operator"));
+
+        for (User user : users) {
+            if (Objects.equals(user.getId(), id)){
+               users.remove(user);
+            }
+        }
         return null;
     }
 }

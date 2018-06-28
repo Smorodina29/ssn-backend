@@ -2,15 +2,17 @@ package com.example.ssn.services;
 
 import com.example.ssn.contracts.Group;
 import com.example.ssn.contracts.User;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class GroupServicesImpl implements GroupService {
     @Override
-    public Group[] getGroups() {
-        Group group = new Group("jwnfkjw");
-        Group[] groups = new Group[1];
-        groups[0] = group;
+    public List<Group> getGroups() {
+        List<Group> groups = new ArrayList<Group>();
+        groups.add(new Group("jwnfkjw"));
 
         return groups;
     }
