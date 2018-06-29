@@ -1,9 +1,6 @@
 package com.example.ssn.contracts;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -14,6 +11,8 @@ public class User {
     private Long id;
     private String firstname;
     private String lastname;
+
+    @Enumerated(value = EnumType.STRING)
     private Roles role;
     private boolean deleted;
     private Group[] groups;
