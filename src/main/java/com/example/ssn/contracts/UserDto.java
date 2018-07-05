@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
-public class User {
+public class UserDto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,21 +19,24 @@ public class User {
     private String username;
     private String password;
     private String position;
+    private String login;
+    private boolean isActive;
 
-    public User() {
+    public UserDto() {
     }
 
 
-    public User(String firstname, String lastname, Roles role, String username, String password, String position) {
+    public UserDto(String firstname, String lastname, Roles role, String username, String password, String position, String login) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.role = role;
         this.username = username;
         this.password = password;
         this.position = position;
+        this.login = login;
     }
 
-    public User(long id, String firstname, String lastname, Roles role, String username, String password, String position) {
+    public UserDto(long id, String firstname, String lastname, Roles role, String username, String password, String position, String login) {
         this.id=id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -41,6 +44,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.position = position;
+        this.login = login;
     }
 
     public Long getId() {
@@ -119,16 +123,16 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return deleted == user.deleted &&
-                Objects.equals(id, user.id) &&
-                Objects.equals(firstname, user.firstname) &&
-                Objects.equals(lastname, user.lastname) &&
-                Objects.equals(role, user.role) &&
-                Arrays.equals(groups, user.groups) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(position, user.position);
+        UserDto userDto = (UserDto) o;
+        return deleted == userDto.deleted &&
+                Objects.equals(id, userDto.id) &&
+                Objects.equals(firstname, userDto.firstname) &&
+                Objects.equals(lastname, userDto.lastname) &&
+                Objects.equals(role, userDto.role) &&
+                Arrays.equals(groups, userDto.groups) &&
+                Objects.equals(username, userDto.username) &&
+                Objects.equals(password, userDto.password) &&
+                Objects.equals(position, userDto.position);
     }
 
     @Override

@@ -1,22 +1,21 @@
 package com.example.ssn.services;
 
-import com.example.ssn.contracts.Roles;
-import com.example.ssn.contracts.User;
+import com.example.ssn.contracts.UserDto;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> findAllUsers();
+    List<UserDto> findAllUsers();
 
-    User getUserById(long id);
+    UserDto getUserById(long id);
 
-    User registration(String firstname, String lastname, Roles role, String username, String password, String position);
+    UserDto registration(UserDto userDto);
 
     void resetPassword(long id, String password);
 
     void changePassword(long id, String password);
 
-    User changeInfo();
+    UserDto changeInfo();
 
-    User delete(long id);
+    UserDto delete(Long id);
 }

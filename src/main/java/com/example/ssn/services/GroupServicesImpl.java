@@ -1,7 +1,7 @@
 package com.example.ssn.services;
 
 import com.example.ssn.contracts.Group;
-import com.example.ssn.contracts.User;
+import com.example.ssn.contracts.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class GroupServicesImpl implements GroupService {
     }
 
     @Override
-    public void addUsers(List<User> users) {
+    public void addUsers(List<UserDto> userDtos) {
 
     }
 

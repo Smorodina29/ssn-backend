@@ -1,7 +1,7 @@
 package com.example.ssn.services;
 
 import com.example.ssn.contracts.Roles;
-import com.example.ssn.contracts.User;
+import com.example.ssn.contracts.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,35 +11,32 @@ import java.util.Objects;
 @Service
 public class UserServiceImpl implements UserService {
     @Override
-    public List<User> findAllUsers() {
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Bob", "Marli", Roles.USER,  "bobm", "pass123", "operator"));
-        //users.add(new User(12, "Steve", "Marli", new Roles("user"),  new Group[1], "bobm", "pass123", "operator"));
-        return users;
+    public List<UserDto> findAllUsers() {
+        ArrayList<UserDto> userDtos = new ArrayList<>();
+        userDtos.add(new UserDto("Bob", "Marli", Roles.USER,  "bobm", "pass123", "operator"));
+        //userDtos.add(new UserDto(12, "Steve", "Marli", new Roles("user"),  new Group[1], "bobm", "pass123", "operator"));
+        return userDtos;
     }
 
     @Override
-    public User getUserById(long id) {
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Bob", "Marli", Roles.USER,"bobm", "pass123", "operator"));
-        users.add(new User((long)12, "Steve", "Marli", Roles.USER,"bobm", "pass123", "operator"));
+    public UserDto getUserById(long id) {
+        ArrayList<UserDto> userDtos = new ArrayList<>();
+        userDtos.add(new UserDto("Bob", "Marli", Roles.USER,"bobm", "pass123", "operator"));
+        userDtos.add(new UserDto((long)12, "Steve", "Marli", Roles.USER,"bobm", "pass123", "operator"));
 
-        for (User user : users) {
-            if (Objects.equals(user.getId(), id)){
-                return user;
+        for (UserDto userDto : userDtos) {
+            if (Objects.equals(userDto.getId(), id)){
+                return userDto;
             }
         }
         return null;
     }
 
     @Override
-    public User registration(String firstname, String lastname, Roles role, String username, String password, String position) {
-        List<User> arrayList = new ArrayList<>();
-        User user = new User(firstname,lastname, role, username, password, position);
-        System.out.println(user.getUsername());
-        System.out.println(username);
-        arrayList.add(user);
-        return user;
+    public UserDto registration(UserDto userDto) {
+        List<UserDto> arrayList = new ArrayList<>();
+        arrayList.add(userDto);
+        return arrayList.get(0);
     }
 
     @Override
@@ -54,21 +51,23 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User changeInfo() {
+    public UserDto changeInfo() {
         return null;
     }
 
     @Override
-    public User delete(long id) {
-        ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Bob", "Marli", Roles.USER,"bobm", "pass123", "operator"));
-        users.add(new User((long)12, "Steve", "Marli", Roles.USER,"bobm", "pass123", "operator"));
+    public UserDto delete(Long id) {
+        int i = 0;
+        ArrayList<UserDto> userDtos = new ArrayList<>();
+        userDtos.add(new UserDto((long)5,"Bob", "Marli", Roles.USER,"bobm", "pass123", "operator"));
+        userDtos.add(new UserDto((long)12, "Steve", "Marli", Roles.USER,"bobm", "pass123", "operator"));
 
-        for (User user : users) {
-            if (Objects.equals(user.getId(), id)){
-               users.remove(user);
+        for (int j = 0; j< userDtos.size(); j++) {
+            if (userDtos.get(j).getId().equals(id)){
+               i = j;
             }
         }
+        userDtos.remove(i);
         return null;
     }
 }

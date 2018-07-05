@@ -11,18 +11,18 @@ import java.util.Objects;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private List<User> users;
+    private List<UserDto> userDtos;
     private String name;
     private Long id;
 
-    public Group(List<User> users, String name, Long id) {
-        this.users = users;
+    public Group(List<UserDto> userDtos, String name, Long id) {
+        this.userDtos = userDtos;
         this.name = name;
         this.id = id;
     }
 
-    public Group(List<User> users, String name) {
-        this.users = users;
+    public Group(List<UserDto> userDtos, String name) {
+        this.userDtos = userDtos;
         this.name = name;
     }
 
@@ -38,12 +38,12 @@ public class Group {
         this.id = id;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<UserDto> getUserDtos() {
+        return userDtos;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUserDtos(List<UserDto> userDtos) {
+        this.userDtos = userDtos;
     }
 
     public String getName() {
@@ -59,7 +59,7 @@ public class Group {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Group group = (Group) o;
-        return Objects.equals(users, group.users) &&
+        return Objects.equals(userDtos, group.userDtos) &&
                 Objects.equals(name, group.name) &&
                 Objects.equals(id, group.id);
     }
@@ -67,6 +67,6 @@ public class Group {
     @Override
     public int hashCode() {
 
-        return Objects.hash(users, name, id);
+        return Objects.hash(userDtos, name, id);
     }
 }
