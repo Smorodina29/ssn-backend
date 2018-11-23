@@ -1,4 +1,4 @@
-package ssn.services;
+package ssn.facades.services;
 
 
 public interface GroupService {

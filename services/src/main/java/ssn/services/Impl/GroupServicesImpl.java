@@ -1,6 +1,7 @@
-package ssn.services;
+package ssn.services.Impl;
 
 import org.springframework.stereotype.Service;
+import ssn.facades.services.GroupService;
 
 @Service
 public class GroupServicesImpl implements GroupService {

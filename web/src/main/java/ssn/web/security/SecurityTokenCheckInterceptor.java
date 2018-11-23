@@ -9,7 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import ssn.commons.api.exceptions.TokenRequiredException;
 import ssn.facades.exeptions.BadTokenException;
 import ssn.facades.exeptions.TokenExpiredException;
-import ssn.facades.facades.SecurityServiceFacade;
+import ssn.facades.SecurityServiceFacade;
 import ssn.web.security.annotation.Secured;
 
 import javax.servlet.http.HttpServletRequest;
